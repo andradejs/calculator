@@ -1,4 +1,5 @@
 import { StatusBar } from "expo-status-bar";
+import { evaluate } from "mathjs";
 import {
   StyleSheet,
   Text,
@@ -13,15 +14,15 @@ export default function App() {
   const [valor, setValor] = useState("");
 
   function execultarOperacao() {
-    setValor(eval(valor));
+    setValor(evaluate(valor).toString());
   }
 
   function apagarUmDigito() {
     setValor(valor.slice(0, -1));
   }
 
-  function apagarTudo(){
-    setValor('')
+  function apagarTudo() {
+    setValor("");
   }
   return (
     <View style={styles.container}>
