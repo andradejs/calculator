@@ -29,194 +29,201 @@ export default function App() {
   function checkSymbol() {
     return isNaN(parseInt(valor.slice(-1)));
   }
+
+  function adicionarNumero(numero) {
+    setValor(valor + numero);
+  }
+
+  function adicionarOperacao(operacao) {
+    if (!checkSymbol()) {
+      setValor(valor + operacao);
+    }
+  }
+
   return (
     // <View style={styles.container}>
-      <SafeAreaView style={styles.calculator}>
-        <View>
-          <TextInput
-            style={styles.tela}
-            placeholder="0"
-            onChangeText={setValor}
-            value={valor}
-            editable={false}
-          ></TextInput>
-        </View>
+    <SafeAreaView style={styles.calculator}>
+      <View>
+        <TextInput
+          style={styles.tela}
+          placeholder="0"
+          onChangeText={setValor}
+          value={valor}
+          editable={false}
+        ></TextInput>
+      </View>
 
-        <View style={styles.teclado}>
-          <View style={styles.row}>
-            <TouchableOpacity style={[styles.btn,styles.AC]} onPress={apagarTudo}>
-              <Text style={styles.textButton}>AC</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={[styles.btn, styles.symbol]}
-              onPress={checkSymbol}
-            >
-              <Text style={styles.textButton}>( )</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={[styles.btn, styles.symbol]}>
-              <Text
-                style={styles.textButton}
-                onPress={() => {
-                  if (!checkSymbol()) {
-                    setValor(valor + "%");
-                  }
-                }}
-              >
-                %
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={[styles.btn, styles.symbol]}>
-              <Text
-                style={styles.textButton}
-                onPress={() => {
-                  if (!checkSymbol()) {
-                    setValor(valor + "/");
-                  }
-                }}
-              >
-                /
-              </Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.row}>
-            <TouchableOpacity
-              style={[styles.btn, styles.numeric]}
-              onPress={() => {
-                setValor(valor + "7");
-              }}
-            >
-              <Text style={styles.textButton}>7</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={[styles.btn, styles.numeric]}
-              onPress={() => {
-                setValor(valor + "8");
-              }}
-            >
-              <Text style={styles.textButton}>8</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={[styles.btn, styles.numeric]}
-              onPress={() => {
-                setValor(valor + "9");
-              }}
-            >
-              <Text style={styles.textButton}>9</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={[styles.btn, styles.symbol]}
-              onPress={() => {
-                if (!checkSymbol()) {
-                  setValor(valor + "*");
-                }
-              }}
-            >
-              <Text style={styles.textButton}>*</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.row}>
-            <TouchableOpacity
-              style={[styles.btn, styles.numeric]}
-              onPress={() => {
-                setValor(valor + "4");
-              }}
-            >
-              <Text style={styles.textButton}>4</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={[styles.btn, styles.numeric]}
-              onPress={() => {
-                setValor(valor + "5");
-              }}
-            >
-              <Text style={styles.textButton}>5</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={[styles.btn, styles.numeric]}
-              onPress={() => {
-                setValor(valor + "6");
-              }}
-            >
-              <Text style={styles.textButton}>6</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={[styles.btn, styles.symbol]}
-              onPress={() => {
-                if (!checkSymbol()) {
-                  setValor(valor + "-");
-                }
-              }}
-            >
-              <Text style={styles.textButton}>-</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.row}>
-            <TouchableOpacity
-              style={[styles.btn, styles.numeric]}
-              onPress={() => {
-                setValor(valor + "1");
-              }}
-            >
-              <Text style={styles.textButton}>1</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={[styles.btn, styles.numeric]}
-              onPress={() => {
-                setValor(valor + "2");
-              }}
-            >
-              <Text style={styles.textButton}>2</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={[styles.btn, styles.numeric]}
-              onPress={() => {
-                setValor(valor + "3");
-              }}
-            >
-              <Text style={styles.textButton}>3</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={[styles.btn, styles.symbol]}
-              onPress={() => {
-                if (!checkSymbol()) {
-                  setValor(valor + "+");
-                }
-              }}
-            >
-              <Text style={styles.textButton}>+</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.row}>
-            <TouchableOpacity
-              style={[styles.btn, styles.numeric]}
-              onPress={() => {
-                setValor(valor + "0");
-              }}
-            >
-              <Text style={styles.textButton}>0</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={[styles.btn, styles.numeric]}
-              onPress={() => {
-                if (!checkSymbol()) {
-                  setValor(valor + ".");
-                }
-              }}
-            >
-              <Text style={styles.textButton}>.</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={[styles.btn, styles.numeric]}
-              onPress={apagarUmDigito}
-            >
-              <Text style={styles.textButton}>←</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={[styles.btn,styles.equal]} onPress={execultarOperacao}>
-              <Text style={styles.textButton}>=</Text>
-            </TouchableOpacity>
-          </View>
+      <View style={styles.teclado}>
+        <View style={styles.row}>
+          <TouchableOpacity
+            style={[styles.btn, styles.AC]}
+            onPress={apagarTudo}
+          >
+            <Text style={styles.textButton}>AC</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.btn, styles.symbol]}
+            onPress={checkSymbol}
+          >
+            <Text style={styles.textButton}>( )</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.btn, styles.symbol]}
+            onPress={() => {
+              adicionarOperacao("%");
+            }}
+          >
+            <Text style={styles.textButton}>%</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.btn, styles.symbol]}
+            onPress={() => {
+              if (!checkSymbol()) {
+                setValor(valor + "/");
+              }
+            }}
+          >
+            <Text style={styles.textButton}>/</Text>
+          </TouchableOpacity>
         </View>
-      </SafeAreaView>
+        <View style={styles.row}>
+          <TouchableOpacity
+            style={[styles.btn, styles.numeric]}
+            onPress={() => {
+              adicionarNumero("7");
+            }}
+          >
+            <Text style={styles.textButton}>7</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.btn, styles.numeric]}
+            onPress={() => {
+              adicionarNumero("8");
+            }}
+          >
+            <Text style={styles.textButton}>8</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.btn, styles.numeric]}
+            onPress={() => {
+              adicionarNumero("9");
+            }}
+          >
+            <Text style={styles.textButton}>9</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.btn, styles.symbol]}
+            onPress={() => {
+            adicionarOperacao("*");
+              
+            }}
+          >
+            <Text style={styles.textButton}>*</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.row}>
+          <TouchableOpacity
+            style={[styles.btn, styles.numeric]}
+            onPress={() => {
+              adicionarNumero("4");
+            }}
+          >
+            <Text style={styles.textButton}>4</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.btn, styles.numeric]}
+            onPress={() => {
+              adicionarNumero("5");
+            }}
+          >
+            <Text style={styles.textButton}>5</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.btn, styles.numeric]}
+            onPress={() => {
+              adicionarNumero("6");
+            }}
+          >
+            <Text style={styles.textButton}>6</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.btn, styles.symbol]}
+            onPress={() => {
+            adicionarOperacao("-");
+              
+            }}
+          >
+            <Text style={styles.textButton}>-</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.row}>
+          <TouchableOpacity
+            style={[styles.btn, styles.numeric]}
+            onPress={() => {
+              adicionarNumero("1");
+            }}
+          >
+            <Text style={styles.textButton}>1</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.btn, styles.numeric]}
+            onPress={() => {
+              adicionarNumero("2");
+            }}
+          >
+            <Text style={styles.textButton}>2</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.btn, styles.numeric]}
+            onPress={() => {
+              adicionarNumero("3");
+            }}
+          >
+            <Text style={styles.textButton}>3</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.btn, styles.symbol]}
+            onPress={() => {
+            adicionarOperacao("+");
+            }}
+          >
+            <Text style={styles.textButton}>+</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.row}>
+          <TouchableOpacity
+            style={[styles.btn, styles.numeric]}
+            onPress={() => {
+              adicionarNumero("0");
+            }}
+          >
+            <Text style={styles.textButton}>0</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.btn, styles.numeric]}
+            onPress={() => {
+              if (!checkSymbol() && !valor.toString().includes(".")) {
+                setValor(valor + ".");
+              }
+            }}
+          >
+            <Text style={styles.textButton}>.</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.btn, styles.numeric]}
+            onPress={apagarUmDigito}
+          >
+            <Text style={styles.textButton}>←</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.btn, styles.equal]}
+            onPress={execultarOperacao}
+          >
+            <Text style={styles.textButton}>=</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </SafeAreaView>
     // </View>
   );
 }
@@ -265,7 +272,7 @@ const styles = StyleSheet.create({
     // backgroundColor: 'white',
     width: 340,
     height: 80,
-    fontSize:65,
+    fontSize: 65,
     color: "white",
     // backgroundColor: 'white',
     textAlign: "right",
